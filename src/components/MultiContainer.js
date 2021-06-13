@@ -32,7 +32,7 @@ class MultiContainer extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:9000/categories")
+        fetch(process.env.REACT_APP_APIURL+ '/categories')
             .then(response => response.json())
             .then(response => this.setState({
                 clipResponse: response

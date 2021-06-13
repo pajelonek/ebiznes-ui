@@ -33,7 +33,7 @@ const FormPage = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        fetch('http://localhost:9000/users')
+        fetch(fetch(process.env.REACT_APP_APIURL+ '/categories') + '/users')
             .then(response => response.json())
             .then(response => console.log(response));
         // console.log(firstName, lastName, email, password);
