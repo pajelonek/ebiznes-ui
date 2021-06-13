@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_08fac5ba297949a2b4a9c6934c7ec48d }}/jelon97/ebiznes-ui2021:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_08fac5ba297949a2b4a9c6934c7ec48d }}/ebiznes-ui2021:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'ebiznes-ui'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_0c7d5f89a42e4a168afd20f9062db668 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_08fac5ba297949a2b4a9c6934c7ec48d }}/jelon97/ebiznes-ui2021:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_08fac5ba297949a2b4a9c6934c7ec48d }}/ebiznes-ui2021:${{ github.sha }}'
