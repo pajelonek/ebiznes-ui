@@ -33,7 +33,7 @@ const FormPage = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        fetch(fetch(process.env.REACT_APP_APIURL+ '/categories') + '/users')
+        fetch(process.env.REACT_APP_APIURL + '/users')
             .then(response => response.json())
             .then(response => console.log(response));
         // console.log(firstName, lastName, email, password);
