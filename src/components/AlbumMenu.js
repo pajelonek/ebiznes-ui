@@ -22,7 +22,9 @@ export default function AlbumMenu() {
     }
 
     const handleClick = () => {
-        searchFetch().then(response => console.log(response));
+        searchFetch()
+            // .then(response => console.log(response))
+            .then(response => console.log(response[0].price));
     };
 
     const handleMenuItemClick = (event, index) => {
