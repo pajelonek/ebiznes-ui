@@ -1,9 +1,8 @@
-import React, {Component} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
 import ClipsGrid from './ClipsGrid';
-import {MContext} from "./MyProvider";
-
+import {Pagination} from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -20,51 +19,47 @@ const useStyles = makeStyles((theme) => ({
     },
     cardContent: {
         flexGrow: 1,
-    },
+    }
 }));
 
-class MultiContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            clipResponse: []
-        }
+
+function MultiContainer(props) {
+    const [clipResponse, setClipResponse] = useState();
+    const periodMap = new Map([['TOP ALL', 'all'], ['TOP 24H', 'day'], ['TOP 7D', 'week'], ['TOP 30D', 'month']]);
+    let addedQuery = false;
+
+
+    function buildUrl() {
+        let url = "http://localhost:3000/clips";
+        addedQuery = false;
+        return url;
     }
 
-    componentDidMount() {
-        fetch(process.env.REACT_APP_APIURL+ '/categories')
-            .then(response => response.json())
-            .then(response => this.setState({
-                clipResponse: response
-                
-            }));
-    }
+    useEffect(() => {
+        fetch(buildUrl(), {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+            }
+        }).then(response => response.json())
+            .then(response => {
+                setClipResponse(response);
+            });
+    }, []);
 
-    render() {
-        if (!this.state.clipResponse)
-            return (
-                <div>
-                    <Container className={useStyles.cardGrid} maxWidth="md"/>
-                    <MContext.Consumer>
-                        {(context) => (
-                            <p>{context.state.message}}</p>)}
-                    </MContext.Consumer>
+    if (!clipResponse) return (<div/>);
+    else {
+        return (
+            <div>
+                <Container className={useStyles.cardGrid} style={{marginTop: "5%",}} maxWidth="md">
+                    <ClipsGrid props={clipResponse}/>
+                </Container>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <Pagination onChange={(event, page) => handlePageChange(page)} size='large' count={10}
+                                variant="outlined" shape="rounded" siblingCount={1}/>
                 </div>
-            );
-
-        else {
-            return (
-                <div>
-                    <Container className={useStyles.cardGrid} style={{marginTop: "5%",}} maxWidth="md">
-                        <ClipsGrid props={this.state.clipResponse}/>
-                    </Container>
-                    <MContext.Consumer>
-                        {(context) => (
-                            <p>{context.state.message}</p>)}
-                    </MContext.Consumer>
-                </div>
-            );
-        }
+            </div>
+        );
     }
 }
 

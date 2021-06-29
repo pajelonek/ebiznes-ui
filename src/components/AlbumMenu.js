@@ -14,10 +14,17 @@ export default function AlbumMenu() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
-    const options = ['TOP 24H', 'TOP 7D', 'TOP 30D', 'TOP ALL'];
+    const options = ['Wszystko', 'Telewizory', 'Laptopy', 'Lodówki'];
+
+    async function searchFetch() {
+        return await fetch(process.env.REACT_APP_APIURL + '/products')
+            .then(response => response.json());
+    }
+
     const handleClick = () => {
-        console.info(`You clicked ${options[selectedIndex]}`);
+        searchFetch().then(response => console.log(response));
     };
+
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
         setOpen(false);

@@ -34,7 +34,7 @@ class ClipsGrid extends Component {
             return <Grid container spacing={4}>
                 {this.props.props.clips.map((clip) => (
                     <Grid item key={clip.tracking_id} xs={12} sm={6} md={4}>
-                        <CardActionArea className={useStyles.card}>
+                        <CardActionArea onClick={()=>window.open(clip.url, "_blank")}className={useStyles.card}>
                             <CardMedia style={{height: 0, paddingTop: '56%'}}
                                        className={useStyles.cardMedia}
                                        image={clip.thumbnails.medium}
