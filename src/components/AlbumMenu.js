@@ -15,16 +15,16 @@ export default function AlbumMenu() {
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const options = ['Wszystko', 'Telewizory', 'Laptopy', 'Lodówki'];
+    const [itemsResponse, setItemsResponse] = React.useState();
+
 
     async function searchFetch() {
         return await fetch(process.env.REACT_APP_APIURL + '/products')
-            .then(response => response.json());
+            .then(response => setItemsResponse(response));
     }
 
     const handleClick = () => {
-        searchFetch()
-            // .then(response => console.log(response))
-            .then(response => console.log(response[0].price));
+        searchFetch().then(response => console.log(response));
     };
 
     const handleMenuItemClick = (event, index) => {

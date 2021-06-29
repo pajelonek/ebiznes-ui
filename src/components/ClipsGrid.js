@@ -33,11 +33,11 @@ class ClipsGrid extends Component {
         else {
             return <Grid container spacing={4}>
                 {this.props.props.clips.map((clip) => (
-                    <Grid item key={clip.tracking_id} xs={12} sm={6} md={4}>
-                        <CardActionArea onClick={()=>window.open(clip.url, "_blank")}className={useStyles.card}>
+                    <Grid item key={clip.id} xs={12} sm={6} md={4}>
+                        <CardActionArea className={useStyles.card}>
                             <CardMedia style={{height: 0, paddingTop: '56%'}}
                                        className={useStyles.cardMedia}
-                                       image={clip.thumbnails.medium}
+                                       image={clip.image}
                                        title="Image title"
                             />
                             <CardContent className={useStyles.cardContent}>
@@ -45,7 +45,7 @@ class ClipsGrid extends Component {
                                     {clip.title}
                                 </Typography>
                                 <Typography>
-                                    {clip.broadcaster.name}
+                                    {clip.description}
                                 </Typography>
                             </CardContent>
                             <CardActions>

@@ -28,24 +28,14 @@ function MultiContainer(props) {
     const periodMap = new Map([['TOP ALL', 'all'], ['TOP 24H', 'day'], ['TOP 7D', 'week'], ['TOP 30D', 'month']]);
     let addedQuery = false;
 
-
-    function buildUrl() {
-        let url = "http://localhost:3000/clips";
-        addedQuery = false;
-        return url;
-    }
-
     useEffect(() => {
-        fetch(buildUrl(), {
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-            }
-        }).then(response => response.json())
-            .then(response => {
-                setClipResponse(response);
-            });
+          fetch(process.env.REACT_APP_APIURL + '/products')
+            .then(response => setClipResponse(response));
     }, []);
+
+    function handlePageChange(page) {
+        return null;
+    }
 
     if (!clipResponse) return (<div/>);
     else {
