@@ -30,6 +30,7 @@ function MultiContainer(props) {
     const periodMap = new Map([['TOP ALL', 'all'], ['TOP 24H', 'day'], ['TOP 7D', 'week'], ['TOP 30D', 'month']]);
     let addedQuery = false;
 
+
     useEffect(() => {
           fetch(process.env.REACT_APP_APIURL + '/products')
               .then(response => setClipResponse(response))
