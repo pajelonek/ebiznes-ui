@@ -1,8 +1,8 @@
 import React from 'react';
-import {Switch, Button, MenuItem} from "@material-ui/core";
+import {Switch} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-import {Link as RouterLink} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 export default function Header() {
     const [state, setState] = React.useState({
@@ -10,19 +10,27 @@ export default function Header() {
         checkedB: true,
     });
 
+
     const handleChange = (event) => {
         setState({...state, [event.target.name]: event.target.checked});
     };
 
+    function LogInButton() {
+        return <Button>Sign in</Button>;
+    }
+
+    function RegisterButton() {
+        return  <Button>Sign up</Button>;
+    }
+
     return (
         <div>
             <Grid container spacing={2} justify="center">
-                <Grid xs={4} item/>
-                <Grid xs={4} item>
-                    <h1>KOX SHOP</h1>
+                <Grid item>
+                    <h1>StreamersClipsViewer</h1>
                 </Grid>
-                <Grid item xs={4} style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-                    <Brightness4Icon style={{fontSize: 30}}/>
+                <Grid item style={{display: 'flex', alignItems: 'center', justifyContent:'flex-end'}}>
+                    <Brightness4Icon style={{ fontSize: 30}}/>
                     <Switch
                         checked={state.checkedB}
                         onChange={handleChange}
@@ -31,13 +39,10 @@ export default function Header() {
                         aria-label="spacing"
                         inputProps={{'aria-label': 'primary checkbox'}}
                     />
-
-                    <Button size="medium" type="submit">
-                        Sign up
-                    </Button>
-                    <MenuItem to="/login" component={RouterLink}>
-                        Sign in
-                    </MenuItem>
+                </Grid>
+                <Grid item style={{display: 'flex', alignItems: 'right', justifyContent:'flex-right'}}>
+                    <LogInButton/>
+                    <RegisterButton/>
                 </Grid>
             </Grid>
         </div>
