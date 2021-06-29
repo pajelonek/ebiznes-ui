@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Grid from "@material-ui/core/Grid";
 import {
     ButtonGroup, ClickAwayListener, Grow,
@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AppBar from "@material-ui/core/AppBar";
 import {MContext} from "./MyProvider";
+import {SearchContext} from "../contexts/SearchContext";
 
 export default function AlbumMenu() {
 
@@ -15,12 +16,12 @@ export default function AlbumMenu() {
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const options = ['Wszystko', 'Telewizory', 'Laptopy', 'Lodówki'];
-    const [itemsResponse, setItemsResponse] = React.useState();
+    const [search, setSearch] = useContext(SearchContext);
 
 
     async function searchFetch() {
         return await fetch(process.env.REACT_APP_APIURL + '/products')
-            .then(response => setItemsResponse(response));
+            .then(response => setSearch(true));
     }
 
     const handleClick = () => {
