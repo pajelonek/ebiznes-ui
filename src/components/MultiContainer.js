@@ -32,8 +32,8 @@ function MultiContainer(props) {
 
     useEffect(() => {
           fetch(process.env.REACT_APP_APIURL + '/products')
-              .then(response => console.log(response))
-              .then(response => setClipResponse(response));
+              .then(response => setClipResponse(response))
+              .then(response => console.log(response));
     }, [search]);
 
     function handlePageChange(page) {

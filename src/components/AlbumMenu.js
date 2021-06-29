@@ -26,6 +26,7 @@ export default function AlbumMenu() {
 
     const handleClick = () => {
         searchFetch().then(response => console.log(response));
+        console.log("END of search")
     };
 
     const handleMenuItemClick = (event, index) => {
