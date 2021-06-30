@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
 class ClipsGrid extends Component {
 
     render() {
-        if (!this.props.props.clips) return null;
+        if (!this.props.props) return null;
         else {
             return <Grid container spacing={4}>
-                {this.props.props.clips.map((clip) => (
-                    <Grid item key={clip.id} xs={12} sm={6} md={4}>
+                {this.props.props.map((clip) => (
+                    <Grid key={clip.id} xs={12} sm={6} md={4}>
                         <CardActionArea className={useStyles.card}>
                             <CardMedia style={{height: 0, paddingTop: '56%'}}
                                        className={useStyles.cardMedia}

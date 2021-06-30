@@ -26,10 +26,10 @@ export default function Header() {
     return (
         <div>
             <Grid container spacing={2} justify="center">
-                <Grid item>
+                <Grid>
                     <h1>StreamersClipsViewer</h1>
                 </Grid>
-                <Grid item style={{display: 'flex', alignItems: 'center', justifyContent:'flex-end'}}>
+                <Grid style={{display: 'flex', alignItems: 'center', justifyContent:'flex-end'}}>
                     <Brightness4Icon style={{ fontSize: 30}}/>
                     <Switch
                         checked={state.checkedB}
@@ -40,7 +40,7 @@ export default function Header() {
                         inputProps={{'aria-label': 'primary checkbox'}}
                     />
                 </Grid>
-                <Grid item style={{display: 'flex', alignItems: 'right', justifyContent:'flex-right'}}>
+                <Grid style={{display: 'flex', alignItems: 'right', justifyContent:'flex-right'}}>
                     <LogInButton/>
                     <RegisterButton/>
                 </Grid>

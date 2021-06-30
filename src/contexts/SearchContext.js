@@ -1,10 +1,10 @@
 import {createContext, useState} from "react";
 
-const SearchContext = createContext(false);
+const SearchContext = createContext();
 
 function SearchProvider(props){
 
-    const [Search, setSearch] = useState(false);
+    const [Search, setSearch] = useState();
 
     return(
         <SearchContext.Provider value={[Search,setSearch]}>

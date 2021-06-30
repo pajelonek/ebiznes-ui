@@ -10,10 +10,8 @@ export default function Album() {
         <React.Fragment>
             <CssBaseline/>
             <main>
-                <MyProvider>
-                    <HeroContent/>
-                    <AlbumMenu/>
-                </MyProvider>
+                <HeroContent/>
+                <AlbumMenu/>
             </main>
         </React.Fragment>
     );

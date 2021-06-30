@@ -26,25 +26,34 @@ const useStyles = makeStyles((theme) => ({
 
 function MultiContainer(props) {
     const [clipResponse, setClipResponse] = useState();
-    const [search, setSearch] = useContext(SearchContext);
+    const [Search, setSearch] = useContext(SearchContext);
     const periodMap = new Map([['TOP ALL', 'all'], ['TOP 24H', 'day'], ['TOP 7D', 'week'], ['TOP 30D', 'month']]);
     let addedQuery = false;
 
-
+    async function searchFetch() {
+        return await fetch(process.env.REACT_APP_APIURL + '/products', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => (res.ok ? res : Promise.reject(res)))
+            .then(res => res.json())
+            .catch(e => console.error('api' + e));
+    }
     useEffect(() => {
-          fetch(process.env.REACT_APP_APIURL + '/products')
-              .then(response => setClipResponse(response))
-              .then(response => console.log(response));
-    }, [search]);
+        searchFetch().then(res => {setClipResponse(res); console.log(res); });
+    }, [Search]);
 
     function handlePageChange(page) {
         return null;
     }
 
-    if (!clipResponse) return (<div/>);
+    if (!clipResponse) return (<div> SIEMA </div>);
     else {
         return (
             <div>
+                TEST
                 <Container className={useStyles.cardGrid} style={{marginTop: "5%",}} maxWidth="md">
                     <ClipsGrid props={clipResponse}/>
                 </Container>

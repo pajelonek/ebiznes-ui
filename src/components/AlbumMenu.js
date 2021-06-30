@@ -7,7 +7,6 @@ import {
 import Button from "@material-ui/core/Button";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AppBar from "@material-ui/core/AppBar";
-import {MContext} from "./MyProvider";
 import {SearchContext} from "../contexts/SearchContext";
 
 export default function AlbumMenu() {
@@ -16,21 +15,15 @@ export default function AlbumMenu() {
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const options = ['Wszystko', 'Telewizory', 'Laptopy', 'Lodówki'];
-    const [search, setSearch] = useContext(SearchContext);
-
-
-    async function searchFetch() {
-        return await fetch(process.env.REACT_APP_APIURL + '/products')
-            .then(response => setSearch(true));
-    }
+    const [Search, setSearch] = useContext(SearchContext);
 
     const handleClick = () => {
-        searchFetch().then(response => console.log(response));
-        console.log("END of search")
+        setSearch(options[selectedIndex]);
     };
 
     const handleMenuItemClick = (event, index) => {
         setSelectedIndex(index);
+        setSearch(options[index]);
         setOpen(false);
     };
 
@@ -48,7 +41,7 @@ export default function AlbumMenu() {
 
     return <AppBar position="relative">
         <Grid container direction="column" alignItems="center">
-            <Toolbar item xs={12}>
+            <Toolbar xs={12}>
                 <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
                     <Button onClick={handleClick}>{options[selectedIndex]}</Button>
                     <Button
@@ -90,13 +83,6 @@ export default function AlbumMenu() {
                         </Grow>
                     )}
                 </Popper>
-                <div>
-                    <MContext.Consumer>
-                        {(context) => (
-                            <button onClick={()=>{context.setMessage("New Arrival")}}>Send</button>
-                        )}
-                    </MContext.Consumer>
-                </div>
             </Toolbar>
         </Grid>
     </AppBar>;
