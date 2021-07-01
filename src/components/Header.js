@@ -27,7 +27,7 @@ export default function Header() {
         <div>
             <Grid container spacing={2} justify="center">
                 <Grid>
-                    <h1>StreamersClipsViewer</h1>
+                    <h1>Ebiznes-Webshop</h1>
                 </Grid>
                 <Grid style={{display: 'flex', alignItems: 'center', justifyContent:'flex-end'}}>
                     <Brightness4Icon style={{ fontSize: 30}}/>

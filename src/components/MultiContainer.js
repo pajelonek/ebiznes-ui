@@ -27,11 +27,10 @@ const useStyles = makeStyles((theme) => ({
 function MultiContainer(props) {
     const [clipResponse, setClipResponse] = useState();
     const [Search, setSearch] = useContext(SearchContext);
-    const periodMap = new Map([['TOP ALL', 'all'], ['TOP 24H', 'day'], ['TOP 7D', 'week'], ['TOP 30D', 'month']]);
-    let addedQuery = false;
+    const periodMap = new Map([['Telewizory', 'TV'], ['Konsole', 'Konsole']]);
 
     async function searchFetch() {
-        return await fetch(process.env.REACT_APP_APIURL + '/products', {
+        return await fetch(buildUrl(), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,19 +40,29 @@ function MultiContainer(props) {
             .then(res => res.json())
             .catch(e => console.error('api' + e));
     }
+
     useEffect(() => {
         searchFetch().then(res => {setClipResponse(res); console.log(res); });
     }, [Search]);
+
+
+    function buildUrl() {
+        let url = process.env.REACT_APP_APIURL + '/categories/products/' + handleSearch(Search);
+        return url;
+    }
+
+    function handleSearch(search){
+        return periodMap.get(search);
+    }
 
     function handlePageChange(page) {
         return null;
     }
 
-    if (!clipResponse) return (<div> SIEMA </div>);
+    if (!clipResponse) return (<div/>);
     else {
         return (
             <div>
-                TEST
                 <Container className={useStyles.cardGrid} style={{marginTop: "5%",}} maxWidth="md">
                     <ClipsGrid props={clipResponse}/>
                 </Container>

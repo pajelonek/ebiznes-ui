@@ -4,7 +4,7 @@ const SearchContext = createContext();
 
 function SearchProvider(props){
 
-    const [Search, setSearch] = useState();
+    const [Search, setSearch] = useState('TV');
 
     return(
         <SearchContext.Provider value={[Search,setSearch]}>

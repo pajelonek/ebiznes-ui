@@ -14,7 +14,7 @@ export default function AlbumMenu() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
-    const options = ['Wszystko', 'Telewizory', 'Laptopy', 'Lodówki'];
+    const options = ['Telewizory', 'Konsole'];
     const [Search, setSearch] = useContext(SearchContext);
 
     const handleClick = () => {
