@@ -4,13 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import {SearchProvider} from "./contexts/SearchContext";
+import {SearchProvider} from "./components/contexts/SearchContext";
+import {UserProvider} from "./components/contexts/UserContext";
 
 ReactDOM.render(
     <BrowserRouter>
-        <SearchProvider>
-            <App/>
-        </SearchProvider>
+        <UserProvider>
+            <SearchProvider>
+                <App/>
+            </SearchProvider>
+        </UserProvider>
     </BrowserRouter>,
     document.getElementById('root')
 );

@@ -7,7 +7,7 @@ import {
 import Button from "@material-ui/core/Button";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AppBar from "@material-ui/core/AppBar";
-import {SearchContext} from "../contexts/SearchContext";
+import {SearchContext} from "./contexts/SearchContext";
 
 export default function AlbumMenu() {
 

@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
 import ClipsGrid from './ClipsGrid';
 import {Pagination} from "@material-ui/lab";
-import {SearchContext} from "../contexts/SearchContext";
+import {SearchContext} from "./contexts/SearchContext";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {

@@ -1,26 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Switch} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Button from "@material-ui/core/Button";
+import {Redirect} from "react-router-dom";
 
 export default function Header() {
     const [state, setState] = React.useState({
         checkedA: true,
         checkedB: true,
     });
-
+    const [redirectToLogin, setRedirectToLogin] = useState(false);
+    const [login, setLogin] = useState('');
 
     const handleChange = (event) => {
         setState({...state, [event.target.name]: event.target.checked});
     };
 
     function LogInButton() {
-        return <Button>Sign in</Button>;
+        console.log("USER = " + localStorage.getItem("user"));
+        if (localStorage.getItem("user") === undefined || localStorage.getItem("user") === null) {
+            return  <Button onClick={handleLogin}>Sign in</Button>;
+        }
+        else return <Button>Hello</Button>;
+    }
+    function handleLogin(){
+        setLogin('/login');
+        setRedirectToLogin(true);
     }
 
     function RegisterButton() {
         return  <Button>Sign up</Button>;
+    }
+
+    if (redirectToLogin) {
+        return <Redirect to="/login" />;
     }
 
     return (
