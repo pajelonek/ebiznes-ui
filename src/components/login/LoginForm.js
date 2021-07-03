@@ -10,6 +10,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Redirect} from 'react-router-dom';
 import {UserContext} from "../contexts/UserContext";
+import GoogleButton from 'react-google-button';
 
 async function register(email, password){
     return await fetch(process.env.REACT_APP_APIURL + '/signIn', {
@@ -44,6 +45,9 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    googleButton: {
+    margin: theme.spacing(3, 0, 2),
+}
 }));
 
 export default function LoginForm() {
@@ -129,6 +133,17 @@ export default function LoginForm() {
                         Sign In
                     </Button>
                 </form>
+                <Grid container>
+                    <Grid item>
+                        <GoogleButton
+                            className={classes.googleButton}
+                            onClick={() => {
+                                window.location.href =
+                                    process.env.REACT_APP_APIURL + '/authenticate/google';
+                            }}
+                        />
+                    </Grid>
+                </Grid>
             </div>
         </Container>
     );

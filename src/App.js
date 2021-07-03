@@ -6,6 +6,7 @@ import {Route, Switch} from "react-router-dom";
 import Footer from "./components/Footer";
 import MultiContainer from "./components/MultiContainer";
 import LoginForm from "./components/login/LoginForm";
+import SSORedirect from "./components/login/SSORedirect";
 
 function App() {
 
@@ -18,6 +19,9 @@ function App() {
             </Route>
             <Route exact path="/login">
                 <LoginForm/>
+            </Route>
+            <Route path="/sso">
+                <SSORedirect />
             </Route>
             <Footer/>
         </div>
