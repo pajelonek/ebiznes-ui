@@ -21,7 +21,7 @@ function App() {
                 <LoginForm/>
             </Route>
             <Route path="/sso">
-                <SSORedirect />
+                <SSORedirect/>
             </Route>
             <Footer/>
         </div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
 import {CardActions} from "@material-ui/core";
@@ -7,6 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import {ProductItem} from "./products/ProductItem";
+import {add, store} from "./products/BasketActions";
+import ButtonBase from "@material-ui/core/ButtonBase";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -26,38 +29,52 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-class ClipsGrid extends Component {
+function testProduct(clip) {
+    const testProduct: ProductItem = {
+        id: clip.id,
+        title: clip.title,
+        description: clip.description,
+        price: clip.price,
+        category: clip.category.name,
+        image: clip.image
+    };
 
-    render() {
-        if (!this.props.props) return null;
-        else {
-            return <Grid container spacing={4}>
-                {this.props.props.map((clip) => (
+    // store.dispatch(add(testProduct));
+}
+
+function ClipsGrid(clips) {
+    if (!clips.clips) return (<div> OK </div>);
+    else {
+        return (
+            <Grid container spacing={4}>
+                {clips.clips.map((clip: ProductItem) => (
                     <Grid key={clip.id} xs={12} sm={6} md={4}>
-                        <CardActionArea className={useStyles.card}>
-                            <CardMedia style={{height: 0, paddingTop: '56%'}}
-                                       className={useStyles.cardMedia}
-                                       image={clip.image}
-                                       title="Image title"
-                            />
-                            <CardContent className={useStyles.cardContent}>
-                                <Typography gutterBottom variant="h5" component="h5">
-                                    {clip.title}
-                                </Typography>
-                                <Typography>
-                                    {clip.description}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    Dodaj
-                                </Button>
-                            </CardActions>
-                        </CardActionArea>
+                        <ButtonBase
+                            focusRipple
+                            key={clip.id}
+                            className={clip.image}
+                            onClick={() => store.dispatch(add(clip))}
+                        >
+                            <CardActionArea className={useStyles.card}>
+                                <CardMedia style={{height: 0, paddingTop: '56%'}}
+                                           className={useStyles.cardMedia}
+                                           image={clip.image}
+                                           title="Image title"
+                                />
+                                <CardContent className={useStyles.cardContent}>
+                                    <Typography gutterBottom variant="h5" component="h5">
+                                        {clip.title}
+                                    </Typography>
+                                    <Typography>
+                                        {clip.description}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </ButtonBase>
                     </Grid>
                 ))}
-            </Grid>;
-        }
+            </Grid>
+        )
     }
 }
 

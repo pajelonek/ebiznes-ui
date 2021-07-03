@@ -6,12 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {SearchProvider} from "./components/contexts/SearchContext";
 import {UserProvider} from "./components/contexts/UserContext";
+import {store} from "./components/products/BasketActions";
+import {Provider} from "react-redux";
 
 ReactDOM.render(
     <BrowserRouter>
         <UserProvider>
             <SearchProvider>
-                <App/>
+                <Provider store={store}>
+                    <App/>
+                </Provider>
             </SearchProvider>
         </UserProvider>
     </BrowserRouter>,

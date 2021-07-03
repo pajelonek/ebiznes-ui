@@ -4,6 +4,11 @@ import {makeStyles} from "@material-ui/core/styles";
 import ClipsGrid from './ClipsGrid';
 import {Pagination} from "@material-ui/lab";
 import {SearchContext} from "./contexts/SearchContext";
+import {Box} from "@material-ui/core";
+import {Product} from "./products/Products";
+import {Basket} from "./products/Basket";
+import {useSelector} from "react-redux";
+import {ProductItem} from "./products/ProductItem";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -28,6 +33,7 @@ function MultiContainer(props) {
     const [clipResponse, setClipResponse] = useState();
     const [Search, setSearch] = useContext(SearchContext);
     const periodMap = new Map([['Telewizory', 'TV'], ['Konsole', 'Konsole']]);
+
 
     async function searchFetch() {
         return await fetch(buildUrl(), {
@@ -64,13 +70,22 @@ function MultiContainer(props) {
         return (
             <div>
                 <Container className={useStyles.cardGrid} style={{marginTop: "5%",}} maxWidth="md">
-                    <ClipsGrid props={clipResponse}/>
+                    <ClipsGrid clips={clipResponse}/>
                 </Container>
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <Pagination onChange={(event, page) => handlePageChange(page)} size='large' count={10}
                                 variant="outlined" shape="rounded" siblingCount={1}/>
                 </div>
+                <Container maxWidth="md">
+                    <Box mt={5} mb={5}>
+                        <Product/>
+                    </Box>
+                    <Box mt={5} mb={5}>
+                        <Basket/>
+                    </Box>
+                </Container>
             </div>
+
         );
     }
 }
