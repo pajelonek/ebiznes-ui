@@ -23,28 +23,34 @@ export default function Header() {
     const handleChange = (event) => {
         setState({...state, [event.target.name]: event.target.checked});
     };
-
     function LogInButton() {
-        if (localStorage.getItem("user") === undefined || localStorage.getItem("user") === "null") {
+        if (verifyNoUserInStorage() && verifyNoAuthTokenInStorage()) {
             return  <Button onClick={handleLogin}>Sign in</Button>;
         }
-        else return <Button>Hello</Button>;
+        else return <Button>You are logged in</Button>;
     }
 
     function LogOutButton() {
-        if (localStorage.getItem("user") === "ok") {
+        if (!verifyNoUserInStorage() || !verifyNoAuthTokenInStorage()) {
             return  <Button onClick={handleLogOut}>Log out</Button>;
         }
         return null;
     }
 
     function RegisterButton() {
-        if (localStorage.getItem("user") === undefined  || localStorage.getItem("user") === "null") {
+        if (verifyNoUserInStorage() && verifyNoAuthTokenInStorage()) {
             return  <Button onClick={handleRegister}>Sign up</Button>;
         }
         return null;
     }
 
+    function verifyNoUserInStorage(){
+        return localStorage.getItem("user") === "undefined" || localStorage.getItem("user") === "null";
+    }
+
+    function verifyNoAuthTokenInStorage(){
+        return localStorage.getItem('authToken') === "undefined" || localStorage.getItem('authToken') === "null";
+    }
 
     function handleLogin(){
         setLogin('/login');
@@ -57,8 +63,9 @@ export default function Header() {
     }
 
     function handleLogOut(){
-        localStorage.setItem("user", null);
-        setLogOut('/clips');
+        localStorage.setItem("user", undefined);
+        localStorage.setItem('authToken', undefined);
+        setLogOut('/');
         setRedirectToLogOut(true);
     }
 

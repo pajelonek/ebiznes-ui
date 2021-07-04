@@ -27,19 +27,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function testProduct(clip) {
-    const testProduct: ProductItem = {
-        id: clip.id,
-        title: clip.title,
-        description: clip.description,
-        price: clip.price,
-        category: clip.category.name,
-        image: clip.image
-    };
-
-    // store.dispatch(add(testProduct));
-}
-
 function ClipsGrid(clips) {
     if (!clips.clips) return (<div> OK </div>);
     else {
