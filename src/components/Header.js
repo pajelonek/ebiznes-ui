@@ -54,27 +54,32 @@ export default function Header() {
 
     function handleLogin(){
         setLogin('/login');
+        console.log("Login equals" + login);
         setRedirectToLogin(true);
     }
 
     function handleRegister(){
         setRegister('/register');
+        console.log("Register equals "+ register);
         setRedirectToRegister(true);
+        console.log("Redirect equals "+ redirectToRegister);
     }
 
     function handleLogOut(){
         localStorage.setItem("user", undefined);
         localStorage.setItem('authToken', undefined);
         setLogOut('/');
+        console.log("Loggout equals " + LogOut);
         setRedirectToLogOut(true);
     }
 
     useEffect(() => {
         if (redirectToLogOut) {
             setUser(false);
+            console.log("User equals " + User);
             setFinal(true);
         }
-    }, [redirectToLogOut]);
+    }, [redirectToLogOut, ]);
 
 
     if (redirectToLogin) {

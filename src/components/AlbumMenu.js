@@ -18,6 +18,7 @@ export default function AlbumMenu() {
     const [Search, setSearch] = useContext(SearchContext);
 
     const handleClick = () => {
+        console.log("Setting search to " + Search);
         setSearch(options[selectedIndex]);
     };
 
