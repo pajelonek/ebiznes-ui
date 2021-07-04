@@ -8,8 +8,6 @@ import Button from "@material-ui/core/Button";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import {ProductItem} from "./products/ProductItem";
-import {add, store} from "./products/BasketActions";
-import ButtonBase from "@material-ui/core/ButtonBase";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -49,28 +47,26 @@ function ClipsGrid(clips) {
             <Grid container spacing={4}>
                 {clips.clips.map((clip: ProductItem) => (
                     <Grid key={clip.id} xs={12} sm={6} md={4}>
-                        <ButtonBase
-                            focusRipple
-                            key={clip.id}
-                            className={clip.image}
-                            onClick={() => store.dispatch(add(clip))}
-                        >
-                            <CardActionArea className={useStyles.card}>
-                                <CardMedia style={{height: 0, paddingTop: '56%'}}
-                                           className={useStyles.cardMedia}
-                                           image={clip.image}
-                                           title="Image title"
-                                />
-                                <CardContent className={useStyles.cardContent}>
-                                    <Typography gutterBottom variant="h5" component="h5">
-                                        {clip.title}
-                                    </Typography>
-                                    <Typography>
-                                        {clip.description}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </ButtonBase>
+                        <CardActionArea className={useStyles.card}>
+                            <CardMedia style={{height: 0, paddingTop: '56%'}}
+                                       className={useStyles.cardMedia}
+                                       image={clip.image}
+                                       title="Image title"
+                            />
+                            <CardContent className={useStyles.cardContent}>
+                                <Typography gutterBottom variant="h5" component="h5">
+                                    {clip.title}
+                                </Typography>
+                                <Typography>
+                                    {clip.description}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                    Dodaj
+                                </Button>
+                            </CardActions>
+                        </CardActionArea>
                     </Grid>
                 ))}
             </Grid>

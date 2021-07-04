@@ -4,11 +4,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import ClipsGrid from './ClipsGrid';
 import {Pagination} from "@material-ui/lab";
 import {SearchContext} from "./contexts/SearchContext";
-import {Box} from "@material-ui/core";
-import {Product} from "./products/Products";
-import {Basket} from "./products/Basket";
-import {useSelector} from "react-redux";
-import {ProductItem} from "./products/ProductItem";
 
 const useStyles = makeStyles((theme) => ({
     cardGrid: {
@@ -76,14 +71,6 @@ function MultiContainer(props) {
                     <Pagination onChange={(event, page) => handlePageChange(page)} size='large' count={10}
                                 variant="outlined" shape="rounded" siblingCount={1}/>
                 </div>
-                <Container maxWidth="md">
-                    <Box mt={5} mb={5}>
-                        <Product/>
-                    </Box>
-                    <Box mt={5} mb={5}>
-                        <Basket/>
-                    </Box>
-                </Container>
             </div>
 
         );
