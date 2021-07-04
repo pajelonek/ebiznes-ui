@@ -36,15 +36,7 @@ const FormPage = () => {
         fetch(process.env.REACT_APP_APIURL + '/users')
             .then(response => response.json())
             .then(response => console.log(response));
-        // console.log(firstName, lastName, email, password);
-        // console.log(fetch("http://localhost:9000/users"))
     };
-
-    // const fetchAPI = e => {
-    //     // param is a highlighted word from the user before it clicked the button
-    //     console.log(fetch("http://localhost:9000/users"));
-    // }
-
 
     return (
         <form className={classes.root} onSubmit={handleSubmit}>

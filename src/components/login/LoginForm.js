@@ -13,7 +13,7 @@ import {UserContext} from "../contexts/UserContext";
 import GoogleButton from 'react-google-button';
 
 async function register(email, password){
-    return await fetch(process.env.REACT_APP_APIURL + '/signIn', {
+    return fetch(process.env.REACT_APP_APIURL + '/signIn', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -76,6 +76,7 @@ export default function LoginForm() {
     useEffect(() => {
         if (redirectToReferrer) {
             setUser(true);
+            console.log("User equals "+ User);
             setFinal(true);
         }
     }, [redirectToReferrer]);

@@ -31,7 +31,7 @@ function MultiContainer(props) {
 
 
     async function searchFetch() {
-        return await fetch(buildUrl(), {
+        return fetch(buildUrl(), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,8 +48,7 @@ function MultiContainer(props) {
 
 
     function buildUrl() {
-        let url = process.env.REACT_APP_APIURL + '/categories/products/' + handleSearch(Search);
-        return url;
+        return  process.env.REACT_APP_APIURL + '/categories/products/' + handleSearch(Search);
     }
 
     function handleSearch(search){
