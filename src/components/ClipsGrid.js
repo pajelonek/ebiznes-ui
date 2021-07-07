@@ -47,6 +47,9 @@ function ClipsGrid(clips) {
                                 <Typography>
                                     {clip.description}
                                 </Typography>
+                                <Typography>
+                                    cena : {clip.price}
+                                </Typography>
                             </CardContent>
                             <CardActions>
                                 <Button size="small" color="primary">
