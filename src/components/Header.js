@@ -86,6 +86,10 @@ export default function Header() {
         return <Redirect to="/login" />;
     }
 
+    if (redirectToRegister) {
+        return <Redirect to="/register" />;
+    }
+
     if (final) {
         return <Redirect to="/" />;
     }
